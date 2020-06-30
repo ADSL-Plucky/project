@@ -1,0 +1,54 @@
+{% extends 'admin/admin.html' %}
+
+{% block content %}
+        <!--内容-->
+        <section class="content-header">
+            <h1>凤凰图书管理系统</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> 首页</a></li>
+                <li class="active">控制面板</li>
+            </ol>
+        </section>
+        <!--内容-->
+{% endblock %}
+
+{% block js %}
+    <script src="{{ url_for('static',filename='js/echarts.min.js') }}"></script>
+    <script>
+    var myChart = echarts.init(document.getElementById('meminfo'));
+    option = {
+		backgroundColor: "white",
+		tooltip: {
+			formatter: "{a} <br/>{b} : {c}%"
+		},
+		toolbox: {
+			feature: {
+				restore: {},
+				saveAsImage: {}
+			}
+		},
+		series: [{
+			name: '内存使用率',
+			type: 'gauge',
+			detail: {
+				formatter: '{value}%'
+			},
+			data: [{
+				value: 50,
+				name: '内存使用率'
+			}]
+		}]
+	};
+    setInterval(function () {
+        option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+        myChart.setOption(option, true);
+    },2000);
+
+</script>
+    <script>
+    $(document).ready(function(){
+        $("#g-1").addClass("active");
+        $("#g-1-1").addClass("active");
+    });
+</script>
+{% endblock %}

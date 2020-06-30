@@ -1,0 +1,113 @@
+{% extends "home/home.html" %}
+
+{% block content %}
+<!--导入幻灯-->
+{% include "home/slide.html" %}
+<div id="front_tabs">
+  <div class="container">
+    <div class="tabs_wrapper tabs1_wrapper">
+      <div class="tabs tabs1">
+        <div class="tabs_tabs tabs1_tabs">
+            <ul>
+              <li><a href="#tabs-1">搜索</a></li>
+            </ul>
+        </div>
+        <div class="tabs_content tabs1_content">
+            <div id="tabs-1">
+                <!--导入搜素框-->
+                {% include "home/search_box.html" %}
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="popular_cruises1">
+  <div class="container">
+    <h2 class="animated">热门书籍</h2>
+    <br><br>
+    <div id="popular_wrapper" class="animated" data-animation="fadeIn" data-animation-delay="300">
+      <div id="popular_inner">
+          <div id="popular">
+              <div class="carousel-box">
+                <div class="inner">
+                  <div class="carousel main">
+                    <ul>
+                      {% for v in books %}
+                      <li>
+                        <div class="popular">
+                          <div class="popular_inner">
+                            <figure>
+                              <img src="{{url_for('static',filename='uploads/'+v.logo)}}" alt="" class="img-responsive">
+                              <div class="over">
+                                <div class="v1">{{v.title}}<span>{{v.category.name}}</span></div>
+                                <div class="v2">{{v.introduction.replace(v.introduction[100:],'...')}}</div>
+                              </div>
+                            </figure>
+                            <div class="caption">
+                              <div class="txt1"><span>{{v.title}}</span> {{v.category.name}}</div>
+                              <div class="txt2">{{v.author}}</div>
+                              <div class="txt3 clearfix">
+                              <div class="stars1">
+                                    {% for i in range(5) %}
+                                      {% if i < v.star %}
+                                        <img src="{{url_for('static',filename='base/images/star1.png')}}" alt="">
+                                      {% else %}
+                                        <img src="{{url_for('static',filename='base/images/star2.png')}}" alt="">
+                                      {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="right_side"><a href="{{url_for('home.info',id=v.id)}}" class="btn-default btn1">查看</a></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="popular_pagination"></div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% for v in category%}
+<div id="team1">
+  <div class="container">
+    <h2 class="animated">{{ v.name }}</h2>
+    <br>
+    <div class="row">
+      {% for vv in v.books %}
+      <div class="col-sm-4">
+        <div class="thumb3 animated" data-animation="flipInY" data-animation-delay="300">
+          <div class="thumbnail clearfix">
+            <figure class="">
+              <a href="{{url_for('home.info',id=vv.id)}}">
+              <img src="{{url_for('static',filename='uploads/'+vv.logo)}}" alt="" class="img-responsive">
+              <div class="over">{{vv.title}}</div>
+              </a>
+            </figure>
+            <div class="caption">
+              <div class="txt1">{{vv.title}}</div>
+              <div class="txt2">{{vv.author}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}
+
+
+
+

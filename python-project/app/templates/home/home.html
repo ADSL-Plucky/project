@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Home</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Your description">
+<meta name="keywords" content="Your keywords">
+<meta name="author" content="Your name">
+<link href="{{url_for('static',filename='base/css/bootstrap.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='base/css/font-awesome.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='base/css/animate.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='base/css/select2.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='base/css/smoothness/jquery-ui-1.10.0.custom.css')}}" rel="stylesheet">
+<link href="{{url_for('static',filename='base/css/style.css')}}" rel="stylesheet">
+
+<script src="{{url_for('static',filename='base/js/jquery.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/jquery-ui.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/jquery-migrate-1.2.1.min.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/jquery.easing.1.3.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/superfish.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/select2.js')}}"></script>
+
+<script src="{{url_for('static',filename='base/js/jquery.parallax-1.1.3.resize.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/SmoothScroll.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/jquery.appear.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/jquery.caroufredsel.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/jquery.touchSwipe.min.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/jquery.ui.totop.js')}}"></script>
+<script src="{{url_for('static',filename='base/js/script.js')}}"></script>
+
+</head>
+<body class="front">
+<div id="main">
+<div class="top2_wrapper">
+  <div class="container">
+    <div class="top2 clearfix">
+      <header>
+        <div class="logo_wrapper">
+            <a href="/" class="logo">
+                <h1>凤凰图书</h1>
+            </a>
+        </div>
+      </header>
+      <div class="navbar navbar_ navbar-default">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-collapse navbar-collapse_ collapse">
+          <ul class="nav navbar-nav sf-menu clearfix">
+            <li><a href="/">首页</a></li>
+            <li><a href="/search/">全部书籍</a></li>
+            <li><a href="/contact/">联系我们</a></li>
+            {% if session['user_id'] %}
+              <li><a href="/borrow_list/">我的订阅</a></li>
+              <li><a href="/logout/">退出</a></li>
+            {% else %}
+              <li><a href="/login/">登录/注册</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--内容-->
+{% block content %}{% endblock %}
+<!--内容-->
+
+    <!--底部开始-->
+<div id="footer">
+    <div class="hr"></div>
+    <div class="login-container">
+        <p><span>Copyright © 2020 - 2050  凤凰科技版权所有</span></p>
+    </div>
+</div>
+  <!--底部结束-->
